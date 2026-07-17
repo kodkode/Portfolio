@@ -34,6 +34,7 @@ const PROJECTS = [
       ['STATUS', 'Heading to the App Store'],
     ],
     artifact: 'waveform',
+    access: 'Private build · walkthrough available',
   },
   {
     no: '02',
@@ -53,6 +54,7 @@ const PROJECTS = [
       ['STATUS', 'Audited & hardened'],
     ],
     artifact: 'dial',
+    access: 'Private build · security notes available',
   },
   {
     no: '03',
@@ -72,6 +74,23 @@ const PROJECTS = [
       ['STATUS', 'Running unattended'],
     ],
     artifact: 'nodes',
+    access: 'Selected tooling documented on GitHub',
+    href: 'https://github.com/MiTMi',
+  },
+]
+
+const PUBLIC_BUILDS = [
+  {
+    name: 'SuperNote',
+    description: 'A deliberately simple native notes app for macOS.',
+    stack: 'Swift · macOS',
+    href: 'https://github.com/MiTMi/SuperNote',
+  },
+  {
+    name: 'FocusTimer',
+    description: 'A focused macOS timer built as a small, complete product.',
+    stack: 'Swift · macOS',
+    href: 'https://github.com/MiTMi/FocusTimer',
   },
 ]
 
@@ -133,6 +152,8 @@ const NAV = [
 ]
 
 const EMAIL = 'michael.tubul@gmail.com'
+const GITHUB_URL = 'https://github.com/MiTMi'
+const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-tubul'
 
 /* ===========================================================================
  * Hooks
@@ -331,14 +352,14 @@ function TopBar() {
   return (
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-8">
-        <a href="#top" className="font-display text-sm tracking-tight uppercase">
+        <a href="#top" className="inline-flex min-h-11 items-center font-display text-sm tracking-tight uppercase" aria-label="Back to top">
           MT<span className="text-accent">.</span>
         </a>
         <nav aria-label="Primary">
           <ul className="flex items-center gap-4 sm:gap-8">
             {NAV.map(([id, no, label]) => (
               <li key={id}>
-                <a href={`#${id}`} className="link-under font-mono text-xs uppercase tracking-widest">
+                <a href={`#${id}`} className="link-under inline-flex min-h-11 items-center font-mono text-xs uppercase tracking-widest">
                   <span className="mr-1 hidden text-accent md:inline">{no}</span>
                   {label}
                 </a>
@@ -374,27 +395,45 @@ function Hero() {
         </div>
 
         <div ref={parallaxRef} className="py-14 sm:py-20 lg:py-24">
-          <h1 className="font-display uppercase leading-[0.86] tracking-tight">
-            <span className="hero-in block text-[17vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '150ms' }}>
+          <h1 aria-label="Michael Tubul" className="font-display uppercase leading-[0.86] tracking-tight">
+            <span aria-hidden="true" className="hero-in block text-[17vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '150ms' }}>
               Michael
             </span>
-            <span className="hero-in text-outline block text-[17vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '280ms' }}>
+            <span aria-hidden="true" className="hero-in text-outline block text-[17vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '280ms' }}>
               Tubul
             </span>
           </h1>
 
           <div className="mt-12 grid gap-10 sm:mt-16 lg:grid-cols-[1fr_auto] lg:items-end">
-            <p className="hero-in max-w-2xl text-xl leading-snug sm:text-2xl" style={{ animationDelay: '420ms' }}>
-              I build <em className="font-serif italic text-accent">automation</em> that runs itself,{' '}
-              <em className="font-serif italic text-accent">native apps</em> for Apple platforms, and{' '}
-              <em className="font-serif italic text-accent">AI-assisted workflows</em> — from the
-              enterprise server room to the App Store.
-            </p>
+            <div className="hero-in max-w-2xl" style={{ animationDelay: '420ms' }}>
+              <p className="text-xl leading-snug sm:text-2xl">
+                I build <em className="font-serif italic text-accent">automation</em> that runs itself,{' '}
+                <em className="font-serif italic text-accent">native apps</em> for Apple platforms, and{' '}
+                <em className="font-serif italic text-accent">AI-assisted workflows</em> — from the
+                enterprise server room to the App Store.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="#work"
+                  className="inline-flex min-h-11 items-center gap-3 border-2 border-ink bg-ink px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-paper transition-colors hover:bg-accent hover:text-ink"
+                >
+                  View selected work <span aria-hidden="true">↓</span>
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex min-h-11 items-center gap-3 border-2 border-ink px-5 py-2.5 font-mono text-xs uppercase tracking-widest transition-colors hover:border-accent hover:text-accent"
+                >
+                  Start a conversation <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
             <ul className="hero-in space-y-1 font-mono text-xs uppercase tracking-widest text-muted" style={{ animationDelay: '540ms' }}>
               <li>Based in Israel</li>
               <li>Full stack, floor to cloud</li>
               <li className="text-ink">
-                Open to interesting problems <span aria-hidden="true" className="text-accent">●</span>
+                <a href="#contact" className="link-under inline-flex min-h-11 items-center gap-2">
+                  Open to interesting problems <span aria-hidden="true" className="text-accent">●</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -468,6 +507,22 @@ function ProjectSpread({ project, flip }) {
               </li>
             ))}
           </ul>
+          <div className="mt-7 flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-widest">
+            {project.href ? (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className="link-under inline-flex min-h-11 items-center gap-2"
+              >
+                {project.access} <span aria-hidden="true" className="text-accent">↗</span>
+              </a>
+            ) : (
+              <p className="inline-flex min-h-11 items-center gap-2 border border-ink/25 px-3 text-muted">
+                <span aria-hidden="true" className="text-accent">●</span> {project.access}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* artifact + meta column */}
@@ -496,11 +551,50 @@ function Work() {
     <section id="work" className="scroll-mt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className="pt-16 sm:pt-24">
-          <SectionHeader no="01" title="Selected Work" note="Three things I actually shipped" />
+          <SectionHeader no="01" title="Selected Work" note="Three systems, built end to end" />
         </div>
         {PROJECTS.map((p, i) => (
           <ProjectSpread key={p.name} project={p} flip={i % 2 === 1} />
         ))}
+
+        <Reveal id="public-source" className="scroll-mt-16 border-t-2 border-ink py-14 sm:py-20">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-4">
+              <p className="font-mono text-xs uppercase tracking-widest text-accent">Public source</p>
+              <h3 className="mt-3 font-display text-3xl uppercase leading-none tracking-tight sm:text-4xl">
+                Smaller builds,<br />openly inspectable.
+              </h3>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="link-under mt-6 inline-flex min-h-11 items-center gap-2 font-mono text-xs uppercase tracking-widest"
+              >
+                Browse the GitHub profile <span aria-hidden="true" className="text-accent">↗</span>
+              </a>
+            </div>
+            <div className="grid gap-px overflow-hidden border-2 border-ink bg-ink sm:grid-cols-2 lg:col-span-8">
+              {PUBLIC_BUILDS.map((build) => (
+                <a
+                  key={build.name}
+                  href={build.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group/build min-h-56 bg-paper p-6 transition-colors hover:bg-paper-2 sm:p-8"
+                >
+                  <p className="font-mono text-xs uppercase tracking-widest text-muted">{build.stack}</p>
+                  <h4 className="mt-8 font-display text-3xl uppercase tracking-tight transition-colors group-hover/build:text-accent">
+                    {build.name}
+                  </h4>
+                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-2">{build.description}</p>
+                  <p className="mt-8 font-mono text-xs uppercase tracking-widest">
+                    Inspect repository <span aria-hidden="true" className="text-accent">↗</span>
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -784,10 +878,16 @@ function Contact() {
               </a>
               <div className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
                 {[
-                  ['GitHub', '#'],
-                  ['LinkedIn', '#'],
+                  ['GitHub', GITHUB_URL],
+                  ['LinkedIn', LINKEDIN_URL],
                 ].map(([label, href]) => (
-                  <a key={label} href={href} className="link-under font-mono text-sm uppercase tracking-widest">
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="link-under inline-flex min-h-11 items-center font-mono text-sm uppercase tracking-widest"
+                  >
                     {label} <span aria-hidden="true" className="text-accent">↗</span>
                   </a>
                 ))}
