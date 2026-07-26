@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { isAppwriteConfigured, submitContactMessage } from './lib/appwrite'
+import { submitContactMessage } from './lib/contact'
 
 /* ===========================================================================
  * Content
@@ -721,7 +721,7 @@ function About() {
 }
 
 /* ===========================================================================
- * Contact form — writes to Appwrite, falls back to mailto when unconfigured
+ * Contact form — posts to /api/contact, which stores the message in Postgres
  * ======================================================================== */
 
 const FIELDS = [
@@ -755,14 +755,7 @@ function ContactForm() {
     setError('')
 
     try {
-      if (isAppwriteConfigured) {
-        await submitContactMessage({ name, email, message })
-      } else {
-        // Backend not wired up yet — hand off to the visitor's mail client.
-        const subject = encodeURIComponent(`Portfolio enquiry — ${name}`)
-        const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`)
-        window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
-      }
+      await submitContactMessage({ name, email, message })
       setStatus('success')
       form.reset()
     } catch (err) {
@@ -832,18 +825,20 @@ function ContactForm() {
         <p aria-live="polite" className="font-mono text-xs uppercase tracking-widest">
           {status === 'success' && (
             <span className="text-ink">
-              {isAppwriteConfigured ? 'Sent — I’ll be in touch.' : 'Opening your mail app…'}{' '}
-              <span aria-hidden="true" className="text-accent">✳</span>
+              Sent — I’ll be in touch. <span aria-hidden="true" className="text-accent">✳</span>
             </span>
           )}
           {status === 'error' && <span className="text-accent">{error}</span>}
         </p>
       </div>
 
-      {!isAppwriteConfigured && (
+      {/* if the request failed, hand the visitor a route that always works */}
+      {status === 'error' && (
         <p className="mt-4 font-mono text-[0.7rem] leading-relaxed tracking-wide text-muted">
-          Backend not connected yet — this opens your email client. Add Appwrite keys to store
-          messages instead.
+          Still stuck?{' '}
+          <a href={`mailto:${EMAIL}`} className="link-under text-ink">
+            {EMAIL}
+          </a>
         </p>
       )}
     </form>
