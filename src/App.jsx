@@ -921,6 +921,12 @@ function Contact() {
                     {label} <span aria-hidden="true" className="text-accent">↗</span>
                   </a>
                 ))}
+                <a
+                  href="/support"
+                  className="link-under inline-flex min-h-11 items-center font-mono text-sm uppercase tracking-widest"
+                >
+                  App Support <span aria-hidden="true" className="text-accent">→</span>
+                </a>
               </div>
               {EMAIL && (
                 <p className="mt-10 max-w-sm font-serif text-xl italic leading-snug text-ink-2">
@@ -942,6 +948,9 @@ function Contact() {
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-1 px-4 font-mono text-xs uppercase tracking-widest sm:flex-row sm:px-8">
           <p>© {new Date().getFullYear()} Michael Tubul</p>
           <p className="text-paper/60">Designed & built by hand — React, Tailwind, stubbornness</p>
+          <p>
+            <a href="/support" className="link-under">App Support</a>
+          </p>
           <p>
             exit 0 <span className="text-accent">■</span>
           </p>
