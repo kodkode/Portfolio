@@ -75,7 +75,7 @@ const PROJECTS = [
     ],
     artifact: 'nodes',
     access: 'Selected tooling documented on GitHub',
-    href: 'https://github.com/MiTMi',
+    href: 'https://github.com/kodkode',
   },
 ]
 
@@ -84,13 +84,13 @@ const PUBLIC_BUILDS = [
     name: 'SuperNote',
     description: 'A deliberately simple native notes app for macOS.',
     stack: 'Swift · macOS',
-    href: 'https://github.com/MiTMi/SuperNote',
+    href: 'https://github.com/kodkode/SuperNote',
   },
   {
     name: 'FocusTimer',
     description: 'A focused macOS timer built as a small, complete product.',
     stack: 'Swift · macOS',
-    href: 'https://github.com/MiTMi/FocusTimer',
+    href: 'https://github.com/kodkode/FocusTimer',
   },
 ]
 
@@ -152,7 +152,7 @@ const NAV = [
 ]
 
 const EMAIL = 'michael.tubul@gmail.com'
-const GITHUB_URL = 'https://github.com/MiTMi'
+const GITHUB_URL = 'https://github.com/kodkode'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-tubul'
 
 /* ===========================================================================

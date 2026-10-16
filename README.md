@@ -3,7 +3,7 @@
 Personal portfolio site. React + Vite, styled with Tailwind CSS v4, deployed on
 Vercel with a serverless contact form backed by Neon Postgres.
 
-**Live:** https://portfolio-one-bice-30.vercel.app
+**Live:** https://kodkode.dev
 
 ## Stack
 
