@@ -946,7 +946,7 @@ function Contact() {
 
       <div className="border-t-2 border-ink bg-ink py-4 text-paper">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-1 px-4 font-mono text-xs uppercase tracking-widest sm:flex-row sm:px-8">
-          <p>© {new Date().getFullYear()} Michael Tubul</p>
+          <p>© {new Date().getFullYear()} Michael</p>
           <p className="text-paper/60">Designed & built by hand — React, Tailwind, stubbornness</p>
           <p>
             <a href="/support" className="link-under">App Support</a>

@@ -16,7 +16,7 @@ const CHECKLIST = [
 
 export default function Support() {
   useEffect(() => {
-    document.title = 'Support — Michael Tubul'
+    document.title = 'Support — Michael'
   }, [])
 
   return (
@@ -38,7 +38,7 @@ export default function Support() {
           Something not working? <span className="text-accent">Tell me.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-2">
-          Support for apps published by Michael Tubul on the App Store. Every message is read by me — the
+          Support for apps published by Michael on the App Store. Every message is read by me — the
           developer — and I usually reply within two business days.
         </p>
 
@@ -70,7 +70,7 @@ export default function Support() {
 
       <footer className="border-t-2 border-ink bg-ink py-4 text-paper">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-1 px-4 font-mono text-xs uppercase tracking-widest sm:flex-row sm:px-8">
-          <p>© {new Date().getFullYear()} Michael Tubul</p>
+          <p>© {new Date().getFullYear()} Michael</p>
           <p>
             <a href="/" className="link-under">kodkode.dev</a>
           </p>
