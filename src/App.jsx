@@ -730,7 +730,11 @@ const FIELDS = [
   { name: 'email', label: 'Email', type: 'email', autoComplete: 'email', placeholder: 'jane@example.com' },
 ]
 
-function ContactForm() {
+export function ContactForm({
+  intro = 'Or send a message',
+  placeholder = 'What are you trying to build, break, or automate?',
+  appOptions = null, // optional list of app names — adds an "App" picker
+}) {
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
   const [error, setError] = useState('')
 
@@ -744,13 +748,17 @@ function ContactForm() {
 
     const name = data.get('name')?.toString().trim()
     const email = data.get('email')?.toString().trim()
-    const message = data.get('message')?.toString().trim()
+    const body = data.get('message')?.toString().trim()
+    const app = data.get('app')?.toString().trim()
 
-    if (!name || !email || !message) {
+    if (!name || !email || !body || (appOptions && !app)) {
       setStatus('error')
       setError('Please fill in every field.')
       return
     }
+
+    // Tag support requests so they're easy to filter in the contact_messages table.
+    const message = app ? `[Support: ${app}] ${body}` : body
 
     setStatus('submitting')
     setError('')
@@ -770,7 +778,7 @@ function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="border-2 border-ink bg-paper-2/60 p-6 sm:p-8">
       <p className="font-mono text-xs uppercase tracking-widest text-muted">
-        Or send a message <span className="text-accent">→</span>
+        {intro} <span className="text-accent">→</span>
       </p>
 
       {/* honeypot: visually hidden, off the accessibility tree */}
@@ -798,6 +806,28 @@ function ContactForm() {
         ))}
       </div>
 
+      {appOptions && (
+        <label className="mt-5 block">
+          <span className="font-mono text-xs uppercase tracking-widest text-muted">App</span>
+          <select
+            name="app"
+            required
+            disabled={busy}
+            defaultValue=""
+            className="mt-2 w-full border-b-2 border-ink bg-transparent py-2 text-ink focus:border-accent focus:outline-none disabled:opacity-50"
+          >
+            <option value="" disabled>
+              Choose an app…
+            </option>
+            {appOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+
       <label className="mt-5 block">
         <span className="font-mono text-xs uppercase tracking-widest text-muted">Message</span>
         <textarea
@@ -805,7 +835,7 @@ function ContactForm() {
           rows={4}
           required
           disabled={busy}
-          placeholder="What are you trying to build, break, or automate?"
+          placeholder={placeholder}
           className="mt-2 w-full resize-y border-b-2 border-ink bg-transparent py-2 text-ink placeholder:text-muted/60 focus:border-accent focus:outline-none disabled:opacity-50"
         />
       </label>
