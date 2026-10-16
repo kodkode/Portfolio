@@ -395,12 +395,12 @@ function Hero() {
         </div>
 
         <div ref={parallaxRef} className="py-14 sm:py-20 lg:py-24">
-          <h1 aria-label="Michael Tubul" className="font-display uppercase leading-[0.86] tracking-tight">
-            <span aria-hidden="true" className="hero-in block text-[17vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '150ms' }}>
-              Michael
+          <h1 aria-label="KodKode.dev" className="font-display uppercase leading-[0.86] tracking-tight">
+            <span aria-hidden="true" className="hero-in block text-[15.5vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '150ms' }}>
+              KodKode
             </span>
-            <span aria-hidden="true" className="hero-in text-outline block text-[17vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '280ms' }}>
-              Tubul
+            <span aria-hidden="true" className="hero-in text-outline block text-[15.5vw] sm:text-[13vw] lg:text-[10.5rem]" style={{ animationDelay: '280ms' }}>
+              .dev
             </span>
           </h1>
 
