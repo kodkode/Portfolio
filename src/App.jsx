@@ -154,7 +154,6 @@ const NAV = [
 // Public contact address. Leave empty to hide every email link on the page.
 const EMAIL = ''
 const GITHUB_URL = 'https://github.com/kodkode'
-const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-tubul'
 
 /* ===========================================================================
  * Hooks
@@ -909,7 +908,6 @@ function Contact() {
               <div className={`${EMAIL ? 'mt-10 ' : ''}flex flex-wrap gap-x-10 gap-y-3`}>
                 {[
                   ['GitHub', GITHUB_URL],
-                  ['LinkedIn', LINKEDIN_URL],
                 ].map(([label, href]) => (
                   <a
                     key={label}
