@@ -151,7 +151,8 @@ const NAV = [
   ['contact', '04', 'Contact'],
 ]
 
-const EMAIL = 'michael.tubul@gmail.com'
+// Public contact address. Leave empty to hide every email link on the page.
+const EMAIL = ''
 const GITHUB_URL = 'https://github.com/kodkode'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-tubul'
 
@@ -833,7 +834,7 @@ function ContactForm() {
       </div>
 
       {/* if the request failed, hand the visitor a route that always works */}
-      {status === 'error' && (
+      {status === 'error' && EMAIL && (
         <p className="mt-4 font-mono text-[0.7rem] leading-relaxed tracking-wide text-muted">
           Still stuck?{' '}
           <a href={`mailto:${EMAIL}`} className="link-under text-ink">
@@ -864,14 +865,18 @@ function Contact() {
           <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
             {/* left — the direct route */}
             <div className="min-w-0 lg:col-span-7">
-              <p className="font-mono text-xs uppercase tracking-widest text-muted">Prefer email?</p>
-              <a
-                href={`mailto:${EMAIL}`}
-                className="email-giant mt-3 block max-w-full break-words font-display text-[clamp(1rem,3.1vw,2.5rem)] uppercase leading-none tracking-tight"
-              >
-                {EMAIL}
-              </a>
-              <div className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
+              {EMAIL && (
+                <>
+                  <p className="font-mono text-xs uppercase tracking-widest text-muted">Prefer email?</p>
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="email-giant mt-3 block max-w-full break-words font-display text-[clamp(1rem,3.1vw,2.5rem)] uppercase leading-none tracking-tight"
+                  >
+                    {EMAIL}
+                  </a>
+                </>
+              )}
+              <div className={`${EMAIL ? 'mt-10 ' : ''}flex flex-wrap gap-x-10 gap-y-3`}>
                 {[
                   ['GitHub', GITHUB_URL],
                   ['LinkedIn', LINKEDIN_URL],
@@ -887,10 +892,12 @@ function Contact() {
                   </a>
                 ))}
               </div>
-              <p className="mt-10 max-w-sm font-serif text-xl italic leading-snug text-ink-2">
-                No forms-for-the-sake-of-forms. But if it’s easier, the one on the right lands in the
-                same place.
-              </p>
+              {EMAIL && (
+                <p className="mt-10 max-w-sm font-serif text-xl italic leading-snug text-ink-2">
+                  No forms-for-the-sake-of-forms. But if it’s easier, the one on the right lands in the
+                  same place.
+                </p>
+              )}
             </div>
 
             {/* right — the form */}
