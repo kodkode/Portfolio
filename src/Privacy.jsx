@@ -12,8 +12,8 @@ const SECTIONS = [
   {
     title: 'Who this policy covers',
     body: [
-      'This policy covers the apps Michael publishes on the App Store (VoqaWisp and Passwards) and this website, kodkode.dev. I am an independent developer; when this policy says “I” or “me”, it means me, Michael, the developer and data controller.',
-      'Each app is described separately below because they handle data differently. If an app is not listed here, this general policy applies to it until a dedicated section is added.',
+      'This policy covers the apps Michael publishes on the App Store and this website, kodkode.dev. I am an independent developer; when this policy says “I” or “me”, it means me, Michael, the developer and data controller.',
+      'When an app handles data in a way specific to it, that app gets its own section on this page.',
     ],
   },
   {
@@ -21,22 +21,6 @@ const SECTIONS = [
     body: [
       'I do not sell your data, I do not use your data for advertising, and I do not track you across other companies’ apps or websites.',
       'Wherever possible, data stays on your device or in your own iCloud account, where I cannot read it.',
-    ],
-  },
-  {
-    title: 'VoqaWisp',
-    body: [
-      'Microphone audio. VoqaWisp asks for microphone access so it can transcribe your speech. Transcription runs on your device using WhisperKit. Your audio is not uploaded to me or to any third party.',
-      'Transcript text. To clean up punctuation and formatting, the text of a transcript is sent to Groq, Inc., a third-party AI inference provider, over an encrypted connection. Groq processes the text to return the cleaned-up version. I do not receive or store your transcripts on any server of mine.',
-      'Third-party processing. Groq handles transcript text under its own privacy policy and data-processing terms (groq.com/privacy-policy). I only use providers that commit to protecting your data to a standard at least equal to this policy.',
-    ],
-  },
-  {
-    title: 'Passwards',
-    body: [
-      'Your vault. Everything you store in Passwards is end-to-end encrypted on your device before it is synced. Sync uses Apple CloudKit in your own private iCloud database. I cannot read, access or decrypt your vault, and neither can Apple.',
-      'Recovery escrow. If you turn on recovery, the material needed to recover your vault is stored in encrypted form so that only you can complete a recovery. It does not give me a way into your vault.',
-      'Deleting your data. Deleting the app’s data from within Passwards, or removing its data from iCloud (Settings → [your name] → iCloud → Manage Account Storage), permanently deletes your synced vault.',
     ],
   },
   {

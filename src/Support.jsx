@@ -7,7 +7,8 @@ import { SUPPORT_EMAIL } from './Privacy.jsx'
  * Uses the same form (and the same /api/contact endpoint) as the home page.
  * ======================================================================== */
 
-const APPS = ['VoqaWisp', 'Passwards', 'Other']
+// Published apps, shown as an "App" picker in the form. Empty = no picker.
+const APPS = []
 
 const CHECKLIST = [
   'Which app, and its version (Settings → About in the app)',
@@ -72,7 +73,7 @@ export default function Support() {
             <ContactForm
               intro="Contact support"
               placeholder="Describe the problem or question…"
-              appOptions={APPS}
+              appOptions={APPS.length ? APPS : null}
             />
           </div>
         </div>
