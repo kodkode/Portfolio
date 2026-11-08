@@ -948,6 +948,8 @@ function Contact() {
           <p className="text-paper/60">Designed & built by hand — React, Tailwind, stubbornness</p>
           <p>
             <a href="/support" className="link-under">App Support</a>
+            <span aria-hidden="true" className="mx-2 text-paper/40">·</span>
+            <a href="/privacy" className="link-under">Privacy</a>
           </p>
           <p>
             exit 0 <span className="text-accent">■</span>

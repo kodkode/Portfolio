@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { ContactForm } from './App.jsx'
+import { SUPPORT_EMAIL } from './Privacy.jsx'
 
 /* ===========================================================================
  * /support — the Support URL listed on every App Store product page.
@@ -56,6 +57,15 @@ export default function Support() {
             <p className="mt-8 max-w-sm font-serif text-xl italic leading-snug text-ink-2">
               Feature requests are welcome here too.
             </p>
+            <div className="mt-10">
+              <h2 className="font-mono text-xs uppercase tracking-widest text-muted">Prefer email?</h2>
+              <a
+                href={`mailto:${SUPPORT_EMAIL}`}
+                className="link-under mt-3 inline-block break-all font-display text-xl uppercase tracking-tight sm:text-2xl"
+              >
+                {SUPPORT_EMAIL}
+              </a>
+            </div>
           </div>
 
           <div className="min-w-0 lg:col-span-7">
@@ -71,6 +81,9 @@ export default function Support() {
       <footer className="border-t-2 border-ink bg-ink py-4 text-paper">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-1 px-4 font-mono text-xs uppercase tracking-widest sm:flex-row sm:px-8">
           <p>© {new Date().getFullYear()} Michael</p>
+          <p>
+            <a href="/privacy" className="link-under">Privacy Policy</a>
+          </p>
           <p>
             <a href="/" className="link-under">kodkode.dev</a>
           </p>
